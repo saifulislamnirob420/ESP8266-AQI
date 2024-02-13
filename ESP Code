@@ -1,4 +1,4 @@
-#define BLYNK_TEMPLATE_ID "TMPL6pYJeQUsa"
+ #define BLYNK_TEMPLATE_ID "TMPL6pYJeQUsa"
 #define BLYNK_TEMPLATE_NAME "Air Monitoring Simulation"
 #define BLYNK_AUTH_TOKEN "grecyEGJ0IzFZLhM-gf6BrsFL5VVksVj"
 
@@ -22,8 +22,8 @@ byte degree_symbol[8] =
         0b00000};
 
 char auth[] = BLYNK_AUTH_TOKEN;
-char ssid[] = "NIROB"; // type your wifi name
-char pass[] = "Nirob777x"; // type your wifi password
+char ssid[] = "NOBITA"; // type your wifi name
+char pass[] = "nirob777x"; // type your wifi password
 
 BlynkTimer timer;
 int gas = A0;
@@ -63,7 +63,7 @@ void loop()
   lcd.print("Gas Value: ");
   lcd.print(gasValue);
 
-  if (gasValue < 500)
+  if (gasValue < 600)
   {
     lcd.setCursor(0, 1);
     lcd.print("Fresh Air");
@@ -71,7 +71,7 @@ void loop()
     delay(4000);
     lcd.clear();
   }
-  else if (gasValue > 400)
+  else if (gasValue > 600)
   {
     lcd.setCursor(0, 1);
     lcd.print("Bad Air");
@@ -80,8 +80,8 @@ void loop()
     lcd.clear();
   }
 
-  if (gasValue > 400)
-  {
-    Blynk.logEvent("pollution_alert", "Alert: Our air quality monitoring system indicates high pollution levels. This poses health risks. Please take immediate precautions. Limit outdoor activities, use masks, and stay informed. Your well-being is our priority. #AirQualityEmergency");
+  if(gasValue > 600){
+    //Blynk.email("saifulislamnirob45@gmail.com", "Alert", "Bad Air!");
+    Blynk.logEvent("pollution_alert","Alert: Our air quality monitoring system indicates high pollution levels. This poses health risks. Please take immediate precautions. Limit outdoor activities, use masks, and stay informed. Your well-being is our priority. #AirQualityEmergency");
   }
 }
